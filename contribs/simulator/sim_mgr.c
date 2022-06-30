@@ -375,17 +375,23 @@ time_mgr(void *arg) {
 	/* Main simulation manager loop */
 	uint32_t seconds_to_finish=20;
 	time_t time_end=0;
+  uint8_t trigger = 0;
 
 	while (1) {
 		real_gettimeofday(&t_start, NULL);
 		/* Do we have to end simulation in this cycle? */
 		if ((!time_end && (sim_end_point && sim_end_point <= current_sim[0]))
 				|| *trace_recs_end_sim==-1) { /* ANA: added condition for terminating sim using shmem var trace_recs_end_sim when all jobs have finished */
-			fprintf(stderr, "End point of trace arrived, keep simulation for %d"
-					" seconds for last jobs to be registered\n",
-					seconds_to_finish);
+      if (!trigger){
+        fprintf(stderr, "End point of trace arrived, keep simulation for %d"
+        " seconds for last jobs to be registered\n",
+        seconds_to_finish);
+        trigger =1;
+      }
 			time_end=t_start.tv_sec;
-		}
+		} else{
+      trigger =0;
+    }
 		if (time_end && (t_start.tv_sec-time_end>seconds_to_finish)) {
 			fprintf(stderr, "Wait is over, time to end all processes in the"
 					" simulation\n");
