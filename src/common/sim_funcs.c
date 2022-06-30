@@ -59,7 +59,7 @@ time_t time(time_t *t) {
 		return *(current_sim);
 	}
 };
-int gettimeofday(struct timeval *tv, void *tz){
+int gettimeofday(struct timeval *restrict tv, struct timezone *restrict tz){
 	init_shared_memory_if_needed();
 
 	if (!(current_sim) && !real_gettimeofday) init_funcs();
