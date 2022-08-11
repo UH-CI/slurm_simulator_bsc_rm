@@ -3,7 +3,7 @@
 
 #ifdef SLURM_SIMULATOR
 
-#define SLURM_SIM_SHM "/tester_slurm_sim.shm"
+#define SLURM_SIM_SHM "/tmp/tester_slurm_sim.shm"
 #define SLURM_SEM_NAME "slurmsem"
 #define SIM_SEM_NAME "simsem"
 

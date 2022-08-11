@@ -14,7 +14,7 @@
 
 #include "src/common/sim_funcs.h"
 
-#define SLURM_SIM_SHM "/tester_slurm_sim.shm"
+#define SLURM_SIM_SHM "/tmp/tester_slurm_sim.shm"
 
 /* Offsets */
 #define SIM_SECONDS_OFFSET           0
